@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import CartBadge from "./CartBadge";
 
 function Layout() {
   return (
@@ -9,7 +10,9 @@ function Layout() {
         <nav>
           <Link to="/">Home</Link>{" "}
           <Link to="/menu">Menu</Link>{" "}
-          <Link to="/checkout">Checkout</Link>
+          <Link to="/checkout">
+            <CartBadge />
+          </Link>
         </nav>
       </header>
 

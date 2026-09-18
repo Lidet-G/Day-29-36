@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { loadDishes } from "../api";
 
-export function useFetch(url, category) {
+export function useFetch(category) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,8 +14,12 @@ export function useFetch(url, category) {
       setError(null);
 
       try {
-        const result = await loadDishes(category, ctrl.signal);
-        setData(result);
+        const dishes = await loadDishes(
+          category,
+          ctrl.signal
+        );
+
+        setData(dishes);
       } catch (e) {
         if (e.name !== "AbortError") {
           setError(e.message);
@@ -28,7 +32,11 @@ export function useFetch(url, category) {
     load();
 
     return () => ctrl.abort();
-  }, [url, category]);
+  }, [category]);
 
-  return { data, loading, error };
+  return {
+    data,
+    loading,
+    error
+  };
 }

@@ -1,15 +1,14 @@
 import Dish from "./Dish";
 
-function DishList({ dishes, onAdd }) {
+function DishList({ dishes }) {
   if (dishes.length === 0) {
     return <p>No dishes in this category yet.</p>;
   }
 
-  return dishes.map(d => (
+  return dishes.map(dish => (
     <Dish
-      key={d.id}
-      {...d}
-      onAdd={onAdd}
+      key={dish.id}
+      {...dish}
     />
   ));
 }

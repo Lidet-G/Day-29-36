@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import { useCartStore } from "./cart/cartStore";
 
-function Dish({ id, name, price, category, spicy, onAdd }) {
+function Dish({
+  id,
+  name,
+  price,
+  category,
+  spicy
+}) {
+  const addItem = useCartStore(
+    (s) => s.addItem
+  );
+
   const dish = {
     id,
     name,
@@ -23,7 +34,7 @@ function Dish({ id, name, price, category, spicy, onAdd }) {
 
       {spicy && <p>Spicy</p>}
 
-      <button onClick={() => onAdd(dish)}>
+      <button onClick={() => addItem(dish)}>
         Add to cart
       </button>
     </div>

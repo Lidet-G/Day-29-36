@@ -4,14 +4,13 @@ import {
   Route
 } from "react-router-dom";
 
-import { CartProvider } from "./cart/CartProvider";
-
 import Layout from "./Layout";
 import Menu from "./Menu";
 import DishDetail from "./DishDetail";
-import Cart from "./Cart";
-import RequireAuth from "./auth/RequireAuth";
+import Checkout from "./Checkout";
 import SignIn from "./SignIn";
+import RequireAuth from "./auth/RequireAuth";
+import { AuthProvider } from "./auth/AuthProvider";
 
 function Home() {
   return (
@@ -23,40 +22,50 @@ function Home() {
 }
 
 function NotFound() {
-  return (
-    <div>
-      <h2>Page Not Found</h2>
-      <p>The page you are looking for does not exist.</p>
-    </div>
-  );
+  return <h2>Page Not Found</h2>;
 }
 
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
+      <AuthProvider>
         <Routes>
-  <Route path="/" element={<Layout />}>
-    <Route index element={<Home />} />
-    
-  
-    <Route path="menu" element={<Menu />} />
-    
-    <Route path="menu/:id" element={<DishDetail />} />
-    
-    <Route
-      path="checkout"
-      element={
-        <RequireAuth>
-          <Cart />
-        </RequireAuth>
-      }
-    />
-    <Route path="signin" element={<SignIn />} />
-    <Route path="*" element={<NotFound />} />
-  </Route>
-</Routes>
-      </CartProvider>
+          <Route path="/" element={<Layout />}>
+
+            <Route index element={<Home />} />
+
+            <Route
+              path="menu"
+              element={<Menu />}
+            />
+
+            <Route
+              path="menu/:id"
+              element={<DishDetail />}
+            />
+
+            <Route
+              path="signin"
+              element={<SignIn />}
+            />
+
+            <Route
+              path="checkout"
+              element={
+                <RequireAuth>
+                  <Checkout />
+                </RequireAuth>
+              }
+            />
+
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

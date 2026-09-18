@@ -1,5 +1,7 @@
 export async function loadDishes(category, signal) {
-  const res = await fetch("/dishes.json", { signal });
+  const res = await fetch("/dishes.json", {
+    signal
+  });
 
   if (!res.ok) {
     throw new Error("Could not load the menu");
@@ -11,5 +13,7 @@ export async function loadDishes(category, signal) {
     return dishes;
   }
 
-  return dishes.filter(d => d.category === category);
+  return dishes.filter(
+    d => d.category === category
+  );
 }
