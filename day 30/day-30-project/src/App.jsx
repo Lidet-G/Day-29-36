@@ -7,7 +7,7 @@ import {
 import Layout from "./Layout";
 import Menu from "./Menu";
 import DishDetail from "./DishDetail";
-import Checkout from "./Checkout";
+import Checkout from "./checkout/Checkout";
 import SignIn from "./SignIn";
 import RequireAuth from "./auth/RequireAuth";
 import { AuthProvider } from "./auth/AuthProvider";
@@ -17,6 +17,14 @@ function Home() {
     <div>
       <h2>Welcome to Addis Eats</h2>
       <p>Find your favorite Ethiopian dishes.</p>
+    </div>
+  );
+}
+function OrderComplete() {
+  return (
+    <div>
+      <h2>Order Complete</h2>
+      <p>Your order was placed successfully.</p>
     </div>
   );
 }
@@ -49,14 +57,20 @@ function App() {
               element={<SignIn />}
             />
 
-            <Route
+           <Route
               path="checkout"
               element={
-                <RequireAuth>
-                  <Checkout />
-                </RequireAuth>
-              }
+              <RequireAuth>
+              <Checkout />
+           </RequireAuth>
+            }
+          />
+
+             <Route
+              path="orders/:id"
+           element={<OrderComplete />}
             />
+
 
             <Route
               path="*"

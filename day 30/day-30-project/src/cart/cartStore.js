@@ -13,10 +13,13 @@ export const useCartStore = create(
 
       remove: (id) =>
         set((state) => ({
-          items: state.items.filter(d => d.id !== id)
+          items: state.items.filter(
+            d => d.id !== id
+          )
         })),
 
-      clear: () => set({ items: [] })
+      clear: () =>
+        set({ items: [] })
     }),
     {
       name: "addis-eats-cart"

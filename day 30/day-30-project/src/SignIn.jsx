@@ -1,11 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "./auth/useAuth";
 
 function SignIn() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
 
   function signIn() {
-    localStorage.setItem("loggedIn", "true");
+    login();
 
     const from =
       location.state?.from?.pathname || "/";
