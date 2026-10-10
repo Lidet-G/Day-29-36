@@ -29,6 +29,13 @@ const dishes = [
     description: "Sautéed beef with onions, peppers and spices.",
     price: 400,
   },
+  {
+    id: "tej",
+    name: "Tej",
+    category: "Drinks",
+    description: "A traditional Ethiopian honey drink.",
+    price: 300,
+  },
 ];
 
 export async function generateStaticParams() {
@@ -47,7 +54,7 @@ export default async function DishPage({ params }) {
   }
 
   return (
-    <article>
+    <article className="dish-detail">
       <h1>{dish.name}</h1>
 
       <p>
@@ -60,7 +67,7 @@ export default async function DishPage({ params }) {
         <strong>Price:</strong> {dish.price} ETB
       </p>
 
-      <a href="/menu">← Back to menu</a>
+      <a href="/menu">Back to menu</a>
     </article>
   );
 }
